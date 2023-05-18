@@ -4,20 +4,20 @@ function add() {
     var age = document.getElementById("age");
     if (firsName.value.trim() !== "" && lastName.value.trim() !== "" && age.value.trim() !== "") {
         var tbody = document.getElementById("tbody");
-        createRow = document.createElement("tr");
-        createTdOne = document.createElement("td");
-        createTdTwo = document.createElement("td");
-        createTdThree = document.createElement("td");
-        createTdFoor = document.createElement("td");
+        var createRow = document.createElement("tr");
+        var createTdOne = document.createElement("td");
+        var createTdTwo = document.createElement("td");
+        var createTdThree = document.createElement("td");
+        var createTdFoor = document.createElement("td");
         createTdFoor.setAttribute("class", "d-flex justify-content-center gap-1")
-        createInputOne = document.createElement("input");
+        var createInputOne = document.createElement("input");
         createInputOne.setAttribute("disabled","disabled")
-        createInputTwo = document.createElement("input");
+        var createInputTwo = document.createElement("input");
         createInputTwo.setAttribute("disabled","disabled")
-        createInputThree = document.createElement("input");
+        var createInputThree = document.createElement("input");
         createInputThree.setAttribute("disabled","disabled")
-        createDelete = document.createElement("input");
-        createUpdate = document.createElement("input");
+        var createDelete = document.createElement("input");
+        var createUpdate = document.createElement("input");
         createUpdate.setAttribute("class", "btn btn-primary w-50");
         createUpdate.setAttribute("value", "Update");
         createUpdate.setAttribute("type", "button");
@@ -47,5 +47,8 @@ function add() {
         var age = document.getElementById("age").value = "";
     } else {
         alert("can't add empty value!")
+    }
+    btnDelete.onclick = function(){
+        createRow.removeChild(this)
     }
 }
