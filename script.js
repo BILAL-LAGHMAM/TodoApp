@@ -11,11 +11,11 @@ function add() {
         var createTdFoor = document.createElement("td");
         createTdFoor.setAttribute("class", "d-flex justify-content-center gap-1")
         var createInputOne = document.createElement("input");
-        createInputOne.setAttribute("disabled","disabled")
+        createInputOne.setAttribute("disabled", "disabled")
         var createInputTwo = document.createElement("input");
-        createInputTwo.setAttribute("disabled","disabled")
+        createInputTwo.setAttribute("disabled", "disabled")
         var createInputThree = document.createElement("input");
-        createInputThree.setAttribute("disabled","disabled")
+        createInputThree.setAttribute("disabled", "disabled")
         var createDelete = document.createElement("input");
         var createUpdate = document.createElement("input");
         createUpdate.setAttribute("class", "btn btn-primary w-50");
@@ -42,13 +42,30 @@ function add() {
         createInputTwo.value = lastName.value
         var age = document.getElementById("age");
         createInputThree.value = age.value
-        var firsName = document.getElementById("firsName").value = "";
-        var lastName = document.getElementById("lastName").value = "";
-        var age = document.getElementById("age").value = "";
+        document.getElementById("firsName").value = "";
+        document.getElementById("lastName").value = "";
+        document.getElementById("age").value = "";
     } else {
         alert("can't add empty value!")
     }
-    btnDelete.onclick = function(){
-        createRow.removeChild(this)
+    createDelete.onclick = function () {
+        createRow.remove()
+    }
+    createUpdate.onclick = function () {
+        document.getElementById("firsName").value = createRow.children[0].firstChild.value;
+        document.getElementById("lastName").value = createRow.children[1].firstChild.value;
+        document.getElementById("age").value = createRow.children[2].firstChild.value;
+        var updateConfirm = document.getElementById("updateConfirm")
+        updateConfirm.innerHTML = "Update"
+        updateConfirm.onclick = function () {
+            createRow.children[0].firstChild.value = document.getElementById("firsName").value;
+            createRow.children[1].firstChild.value = document.getElementById("lastName").value;
+            createRow.children[2].firstChild.value = document.getElementById("age").value;
+            document.getElementById("firsName").value = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("age").value = "";
+            updateConfirm.innerHTML = "Add";
+            updateConfirm.setAttribute("onclick","add()");
+        }
     }
 }
