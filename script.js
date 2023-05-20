@@ -1,7 +1,9 @@
+// var array = [];
 function add() {
     var firsName = document.getElementById("firsName");
     var lastName = document.getElementById("lastName");
     var age = document.getElementById("age");
+    var search = document.getElementById("search");
     if (firsName.value.trim() !== "" && lastName.value.trim() !== "" && age.value.trim() !== "") {
         var tbody = document.getElementById("tbody");
         var createRow = document.createElement("tr");
@@ -65,7 +67,29 @@ function add() {
             document.getElementById("lastName").value = "";
             document.getElementById("age").value = "";
             updateConfirm.innerHTML = "Add";
-            updateConfirm.setAttribute("onclick","add()");
+            updateConfirm.setAttribute("onclick", "add()");
+        }
+    }
+
+}
+var btn_search = document.getElementById("btn_search");
+btn_search.onclick = function () {
+    var search = document.getElementById("search").value;
+    var tbody = document.getElementById("tbody").children;
+    for (var i = 0; i < tbody.length; i++) {
+        if (tbody[i].firstChild.firstChild.value === search) {
+            tbody[i].style.display = "table-row";
+        }else{
+            tbody[i].style.display = "none";
+        }
+    }
+}
+document.getElementById("search").onblur = function () {
+    var tbody = document.getElementById("tbody").children;
+    var search = document.getElementById("search").value
+    for (var i = 0; i < tbody.length; i++) {
+        if (search === "") {
+            tbody[i].style.display = "table-row";
         }
     }
 }
