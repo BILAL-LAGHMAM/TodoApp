@@ -1,4 +1,3 @@
-// var array = [];
 function add() {
     var card = document.getElementById("card");
     var name = document.getElementById("name");
@@ -6,7 +5,7 @@ function add() {
     var notes = document.getElementById("notes");
     if (card.value.trim() !== "" && name.value.trim() !== "" && age.value.trim() !== "" && notes.value.trim() !== "") {
         if (!Number(name.value)) {
-            if (Number(age.value) > 0 && Number.isInteger(Number(age.value))) {
+            if ((Number(age.value) >= 18 && Number(age.value) <= 32) && Number.isInteger(Number(age.value))) {
                 if (notes.value <= 20 && notes.value >= 0) {
                     var tbody = document.getElementById("tbody");
                     var createRow = document.createElement("tr");
@@ -58,16 +57,16 @@ function add() {
                     document.getElementById("name").value = "";
                     document.getElementById("age").value = "";
                     document.getElementById("notes").value = "";
+                    swal("Successfully!", "You added all information by successfully!", "success");
                 } else {
                     swal("Invalid Note!", "Please Enter Note between 0 and 20!", "error");
                 }
             } else {
-                swal("Invalid Age!", "Please Enter Age greater than 0 and not float!", "error");
+                swal("Invalid Age!", "Please Enter Age between 18 and 32 and not float!", "error");
             }
         } else {
             swal("Invalid Name!", "Please Enter just caracter!", "error");
         }
-        swal("Successfully!", "You added all information by successfully!", "success");
     }
     else {
         swal("Empty Value!", "Please Enter a Value!", "error");
@@ -97,16 +96,38 @@ function add() {
         var updateConfirm = document.getElementById("updateConfirm")
         updateConfirm.innerHTML = "Update"
         updateConfirm.onclick = function () {
-            createRow.children[0].firstChild.value = document.getElementById("card").value;
-            createRow.children[1].firstChild.value = document.getElementById("name").value;
-            createRow.children[2].firstChild.value = document.getElementById("age").value;
-            createRow.children[3].firstChild.value = document.getElementById("notes").value;
-            document.getElementById("card").value = "";
-            document.getElementById("name").value = "";
-            document.getElementById("age").value = "";
-            document.getElementById("notes").value = "";
-            updateConfirm.innerHTML = "Add";
-            updateConfirm.setAttribute("onclick", "add()");
+            if ((Number(age.value) >= 18 && Number(age.value) <= 32) && Number.isInteger(Number(age.value))) {
+                if (notes.value >= 0 && notes.value <= 20) {
+                    swal({
+                        title: "Are you sure?",
+                        text: "are you sure to update!",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                createRow.children[0].firstChild.value = document.getElementById("card").value;
+                                createRow.children[1].firstChild.value = document.getElementById("name").value;
+                                createRow.children[2].firstChild.value = document.getElementById("age").value;
+                                createRow.children[3].firstChild.value = document.getElementById("notes").value;
+                                document.getElementById("card").value = "";
+                                document.getElementById("name").value = "";
+                                document.getElementById("age").value = "";
+                                document.getElementById("notes").value = "";
+                                updateConfirm.innerHTML = "Add";
+                                updateConfirm.setAttribute("onclick", "add()");
+                                swal("successfully Updated!", "you Update this student!", "success");
+                            } else {
+                                swal("Cancel delete!", "The update has been cancelled!", "warning");
+                            }
+                        });
+                } else {
+                    swal("Invalid Note!", "Please Enter Note between 0 and 20!", "error");
+                }
+            } else {
+                swal("Invalid Age!", "Please Enter Age between 18 and 32 and not float!", "error");
+            }
         }
     }
 
@@ -119,9 +140,10 @@ btn_search.onclick = function () {
         for (var i = 0; i < tbody.length; i++) {
             if (tbody[i].firstChild.firstChild.value === search) {
                 tbody[i].style.display = "table-row";
+                console.log(tbody[i])
             }
             else {
-                swal("Card Not Found!", "Please Enter Another Card!", "error");
+                tbody[i].style.display = "none";
             }
         }
     } else if (search == "") {
