@@ -16,7 +16,7 @@
 <body>
     <div class="container  mt-5">
         <div class="input-group mb-5">
-            <input type="text" id="search" class="form-control" placeholder="search by firsName" aria-label="Username">
+            <input type="text" id="search" class="form-control" placeholder="Search By Card Number" aria-label="Username">
             <button type="button" id="btn_search" onclick="btn_search()" class="btn btn-primary">Search</button>
         </div>
         <div class="input-group mb-5 d-flex justify-content-center gap-3">
@@ -25,8 +25,8 @@
             <button type="button" id="reset" onclick="resetTable()" class="btn btn-primary">Show All Students</button>
         </div>
         <div class="input-group mb-5">
-            <input type="text" id="firsName" class="form-control" placeholder="First Name" aria-label="Username">
-            <input type="text" id="lastName" class="form-control" placeholder="Last Name" aria-label="Server">
+            <input type="text" id="card" class="form-control" placeholder="National Card" aria-label="Username">
+            <input type="text" id="name" class="form-control" placeholder="Full Name" aria-label="Server">
             <input type="text" id="age" class="form-control" placeholder="Age" aria-label="Username">
             <input type="text" id="notes" class="form-control" placeholder="Notes" aria-label="Username">
             <button type="button" id="updateConfirm" onclick="add()" class="btn btn-primary">Add</button>
@@ -34,10 +34,10 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
+                    <th scope="col">National Card</th>
+                    <th scope="col">Full Name</th>
                     <th scope="col">Age</th>
-                    <th scope="col">Notes <i class="fas fa-sort" onclick="sortNotes()"></i></th>
+                    <th scope="col">General Note <i class="fas fa-sort" onclick="sortNotes()"></i></th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -45,6 +45,7 @@
             </tbody>
         </table>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="script.js"></script>
 </body>
 
